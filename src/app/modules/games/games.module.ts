@@ -7,6 +7,7 @@ import {MatButtonModule} from "@angular/material/button";
 import { ChildComponent } from './child/child.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatCardModule} from "@angular/material/card";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -14,12 +15,13 @@ import {MatCardModule} from "@angular/material/card";
     GamesComponent,
     ChildComponent
   ],
-  imports: [
-    CommonModule,
-    GamesRoutingModule,
-    MatButtonModule,
-    MatTableModule,
-    MatCardModule
-  ]
+    imports: [
+        CommonModule,
+        GamesRoutingModule,
+        MatButtonModule,
+        MatTableModule,
+        MatCardModule,
+        MatIconModule
+    ]
 })
 export class GamesModule { }

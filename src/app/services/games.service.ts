@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -8,6 +8,7 @@ import {Observable} from "rxjs";
 export class GamesService {
 
   public url = 'https://localhost:5001/api/Game/withCreators';
+  public url2 = 'https://localhost:5001/api/Game';
 
   constructor(
     public http: HttpClient,
@@ -17,5 +18,18 @@ export class GamesService {
     return this.http.get(`${this.url}`);
   }
 
+  public deleteGame(game : any): Observable<any>{
+    const options = {
+      headers: new HttpHeaders(),
+      body: {"name": game.gameName}
+    };
 
+    return this.http.delete(`${this.url2}`, options);
+  }
+
+  public createGame(game: any): Observable<any> {
+    return this.http.post(`${this.url2}/fromBody`, game);
+  }
 }
+
+

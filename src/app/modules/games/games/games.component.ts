@@ -4,6 +4,9 @@ import {DataService} from "../../../services/data.service";
 import {Subscription} from "rxjs";
 import {GamesService} from "../../../services/games.service";
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {AddEditGameComponent} from "../../shared/add-edit-game/add-edit-game.component";
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-games',
@@ -23,7 +26,7 @@ export class GamesComponent implements OnInit, OnDestroy {
   public loggedUser: { username: string; password: string; };
   public parentMessage = 'Din parinte';
   public games = [];
-  public displayedColumns = ['Game', 'Creator'];
+  public displayedColumns = ['Game', 'Creator', 'Delete'];
   public rol = localStorage.getItem('Role');
   expandedElement: {
     gameName: string;
@@ -36,6 +39,7 @@ export class GamesComponent implements OnInit, OnDestroy {
     private router: Router,
     private dataService: DataService,
     private gamesService: GamesService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -70,4 +74,32 @@ export class GamesComponent implements OnInit, OnDestroy {
     return localStorage.getItem('Role');
   }
 
+  public deleteGame(game : any): void{
+    this.gamesService.deleteGame(game).subscribe(
+      (res) => {
+        console.log(res);
+        this.games = res;
+      },
+      (err) => {
+        console.error(err);
+      }
+    )
+  }
+
+  public openModal(): void{
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.height = '40%';
+    dialogConfig.width = '40%';
+    const dialogRef = this.dialog.open(AddEditGameComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if(res){
+        this.games = res;
+      }
+    });
+  }
+
+  public addNewGame(): void{
+    this.openModal();
+  }
 }
