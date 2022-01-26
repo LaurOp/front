@@ -30,6 +30,11 @@ export class GamesService {
   public createGame(game: any): Observable<any> {
     return this.http.post(`${this.url2}/fromBody`, game);
   }
+
+  public editGame(game: any): Observable<any> {
+    return this.http.put(`${this.url2}`, game);
+  }
+
 }
 
 

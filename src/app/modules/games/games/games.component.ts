@@ -26,7 +26,7 @@ export class GamesComponent implements OnInit, OnDestroy {
   public loggedUser: { username: string; password: string; };
   public parentMessage = 'Din parinte';
   public games = [];
-  public displayedColumns = ['Game', 'Creator', 'Delete'];
+  public displayedColumns = ['Game', 'Creator', 'Edit', 'Delete'];
   public rol = localStorage.getItem('Role');
   expandedElement: {
     gameName: string;
@@ -86,10 +86,18 @@ export class GamesComponent implements OnInit, OnDestroy {
     )
   }
 
-  public openModal(): void{
+  public editGame(game: any): void{
+    this.openModal(game);
+  }
+
+  public openModal(game?: any): void{
+    const data = {
+      game
+    };
     const dialogConfig = new MatDialogConfig();
     dialogConfig.height = '40%';
     dialogConfig.width = '40%';
+    dialogConfig.data = data;
     const dialogRef = this.dialog.open(AddEditGameComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((res) => {
