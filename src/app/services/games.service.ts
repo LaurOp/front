@@ -9,6 +9,7 @@ export class GamesService {
 
   public url = 'https://localhost:5001/api/Game/withCreators';
   public url2 = 'https://localhost:5001/api/Game';
+  public url3 = 'https://localhost:5001/api/Review/grouped';
 
   constructor(
     public http: HttpClient,
@@ -33,6 +34,14 @@ export class GamesService {
 
   public editGame(game: any): Observable<any> {
     return this.http.put(`${this.url2}`, game);
+  }
+
+  public getGameByName(name: any): Observable<any>{
+    return this.http.get(`${this.url2}/+${name}`);
+  }
+
+  public getReviewsByid(idd: any): Observable<any>{
+    return this.http.get(`${this.url3}/${idd}`);
   }
 
 }

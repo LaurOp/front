@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {DataService} from "../../../services/data.service";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {GamesService} from "../../../services/games.service";
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {AddEditGameComponent} from "../../shared/add-edit-game/add-edit-game.component";
@@ -26,7 +26,7 @@ export class GamesComponent implements OnInit, OnDestroy {
   public loggedUser: { username: string; password: string; };
   public parentMessage = 'Din parinte';
   public games = [];
-  public displayedColumns = ['Game', 'Creator', 'Edit', 'Delete'];
+  public displayedColumns = ['Game', 'Creator', 'Review', 'Edit', 'Delete'];
   public rol = localStorage.getItem('Role');
   expandedElement: {
     gameName: string;
@@ -110,4 +110,10 @@ export class GamesComponent implements OnInit, OnDestroy {
   public addNewGame(): void{
     this.openModal();
   }
+
+  public goToReviews(name: any): void{
+    this.router.navigate(['/reviews',name]);
+  }
+
+
 }
