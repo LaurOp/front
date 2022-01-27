@@ -1,0 +1,15 @@
+<div class="container">
+  <mat-card class="card">
+    <h1 class="title">{{name}}</h1>
+    <h4 class="idu">{{idact}}</h4>
+  </mat-card>
+
+
+  <mat-list>
+    <div mat-subheader class="desc">Reviews:</div>
+    <mat-list-item *ngFor="let folder of reviews">
+      <div mat-line class="linie"><mat-icon>sort</mat-icon> {{folder}}</div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-list>
+</div>
