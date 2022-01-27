@@ -1,3 +1,13 @@
+<mat-card class="card2">
+  <mat-card-title>{{loggedUser.username}}</mat-card-title>
+  <mat-card-subtitle>{{rol}}</mat-card-subtitle>
+  <mat-card-actions>
+    <button mat-raised-button (click)="logout()" class="logou" appHoverB>
+      Logout
+    </button>
+  </mat-card-actions>
+</mat-card>
+
 <div class="container">
   <mat-card class="card">
     <h1 class="title">{{name}}</h1>
@@ -12,4 +22,11 @@
     </mat-list-item>
     <mat-divider></mat-divider>
   </mat-list>
+
+  <button mat-raised-button (click)="addNewRev()" class="rev">Add review</button>
+
+  <button mat-raised-button (click)="backToGames()" class="back" appHoverB>
+    Back
+  </button>
+
 </div>

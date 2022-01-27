@@ -21,7 +21,8 @@ import {HoverBDirective} from "../../hover-b.directive";
     AddEditGameComponent
   ],
   exports: [
-    HoverBDirective
+    HoverBDirective,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }

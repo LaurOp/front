@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {AbstractControl, FormControl, FormGroup} from "@angular/forms";
 import {DataService} from "../../../services/data.service";
+import {LoginService} from "../../../services/login.service";
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private dataService: DataService,
+    private loginService: LoginService,
   ) { }
 
   public loginForm: FormGroup = new FormGroup({
@@ -32,9 +34,19 @@ export class LoginComponent implements OnInit {
   }
 
   public login(): void{
+    // this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(
+    //   (res) => {
+    //     console.log(JSON.stringify(res));
+    //   },
+    //   (erro) => {
+    //     console.error(erro);
+    //   }
+    // );
     this.dataService.changeUserData(this.loginForm.value);
     localStorage.setItem('Role', 'Admin');
     this.router.navigate(['/games']);
   }
+
+
 
 }

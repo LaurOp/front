@@ -31,22 +31,23 @@
       <td mat-cell *matCellDef="let element" class="ele" (click)="goToReviews(element.gameName)"><mat-icon>rate_review</mat-icon></td>
     </ng-container>
 
-    <ng-container matColumnDef="Edit">
-      <th mat-header-cell *matHeaderCellDef ><i>Edit</i></th>
-      <td mat-cell *matCellDef="let element" class="ele" (click)="editGame(element)"><mat-icon>subject</mat-icon></td>
-    </ng-container>
+      <ng-container matColumnDef="Edit">
+        <th mat-header-cell *matHeaderCellDef ><i  *ngIf="isadmin">Edit</i></th>
+        <td mat-cell *matCellDef="let element" class="ele" (click)="editGame(element)"><mat-icon  *ngIf="isadmin">subject</mat-icon></td>
+      </ng-container>
 
-    <ng-container matColumnDef="Delete">
-      <th mat-header-cell *matHeaderCellDef ><i>Delete</i></th>
-      <td mat-cell *matCellDef="let element" class="ele" (click)="deleteGame(element)"><mat-icon>cloud_off</mat-icon></td>
-    </ng-container>
+      <ng-container matColumnDef="Delete">
+        <th mat-header-cell *matHeaderCellDef ><i  *ngIf="isadmin">Delete</i></th>
+        <td mat-cell *matCellDef="let element" class="ele" (click)="deleteGame(element)"><mat-icon  *ngIf="isadmin">cloud_off</mat-icon></td>
+      </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <button mat-raised-button (click)="addNewGame()" class="add-button">
-    Add Game
-  </button>
-
+  <div *ngIf="isadmin">
+    <button mat-raised-button (click)="addNewGame()" class="add-button">
+      Add Game
+    </button>
+  </div>
 </div>

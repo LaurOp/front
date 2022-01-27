@@ -13,7 +13,7 @@ export class DataService {
   });
 
  public currentUser = this.userSource.asObservable();
-
+  public currentGame = 0;
   public changeUserData(user: { username: string; password: string; }): void{
     this.userSource.next(user);
   }

@@ -22,6 +22,7 @@ import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 })
 export class GamesComponent implements OnInit, OnDestroy {
 
+  public isadmin: boolean;
   public subscription: Subscription;
   public loggedUser: { username: string; password: string; };
   public parentMessage = 'Din parinte';
@@ -44,7 +45,7 @@ export class GamesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.dataService.currentUser.subscribe(user => this.loggedUser = user);
-
+    this.isadmin = localStorage.getItem('Role') == 'Admin';
     this.gamesService.getAllGamesWithCreators().subscribe(
       (res) => {
         console.log(res);
