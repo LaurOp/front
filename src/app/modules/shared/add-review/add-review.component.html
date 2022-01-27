@@ -1,0 +1,19 @@
+<div class="container">
+  <h1 class="title">
+    Add new review
+  </h1>
+
+  <form [formGroup]="revForm" class="form">
+
+    <mat-form-field appearance="outline" class="deinput">
+      <mat-label class="deinput">Review content:</mat-label>
+      <input matInput placeholder="Review" formControlName="text" class="deinput"/>
+    </mat-form-field>
+
+  </form>
+
+
+  <button mat-raised-button (click)="addRev()">
+    Add
+  </button>
+</div>
